@@ -16,7 +16,8 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <button onclick="" class="btn btn-primary btn-linking"><i class="fa fa-chevron-left"></i> Kembali ke List Buku</button>
+      <a href="<?php echo site_url('buku'); ?>"><button onclick="" class="btn btn-primary btn-linking"><i class="fa fa-chevron-left"></i> Kembali ke List Buku</button></a>
+      
       <div class="row" style="margin-top: 8px;">
         <div class="col-xs-12">
           <div class="box">
@@ -25,23 +26,23 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" action="<?php echo base_url('buku/store'); ?>" method="post">
               <div class="box-body">
                 <div class="form-group">
                   <label for="judulBuku">Judul Buku</label>
-                  <input type="text" class="form-control" id="judulBuku" placeholder="Masukkan judul buku">
+                  <input type="text" class="form-control" id="judulBuku" placeholder="Masukkan judul buku" name="judulBuku">
                 </div>
                 <div class="form-group">
                   <label for="pengarang">Pengarang</label>
-                  <input type="text" class="form-control" id="pengarang" placeholder="Masukkan pengarang">
+                  <input type="text" class="form-control" id="pengarang" placeholder="Masukkan pengarang" name="pengarang">
                 </div>
                 <div class="form-group">
                   <label for="tahunTerbit">Tahun Terbit</label>
-                  <input type="text" class="form-control" id="tahunTerbit" placeholder="Masukkan tahun terbit">
+                  <input type="number" class="form-control" id="tahunTerbit" placeholder="Masukkan tahun terbit" name="tahunTerbit">
                 </div>
                 <div class="form-group">
                   <label for="penerbit">Penerbit</label>
-                  <input type="text" class="form-control" id="penerbit" placeholder="Masukkan penerbit">
+                  <input type="text" class="form-control" id="penerbit" placeholder="Masukkan penerbit" name="penerbit">
                 </div>
               </div>
               <!-- /.box-body -->

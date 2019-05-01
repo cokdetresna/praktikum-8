@@ -16,7 +16,8 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <button onclick="" class="btn btn-success btn-linking">Tambah Data Buku</button>
+      <a href="<?php echo site_url('buku/create'); ?>"><button onclick="" class="btn btn-success btn-linking">Tambah Data Buku</button></a>
+      
       <div class="row" style="margin-top: 8px;">
         <div class="col-xs-12">
           <div class="box">
@@ -44,50 +45,20 @@
                   <th class="text-center">Penerbit</th>
                   <th class="text-center">Action</th>
                 </tr>
+                <?php foreach ($dataBuku as $buku) { ?>
                 <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>A</td>
+                  <td><?php echo $buku->Kode_Register; ?></td>
+                  <td><?php echo $buku->Judul_Buku; ?></td>
+                  <td><?php echo $buku->Pengarang; ?></td>
+                  <td><?php echo $buku->Penerbit; ?></td>
+                  <td><?php echo $buku->Tahun_Terbit; ?></td>
                   <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                      <a href="<?php echo site_url('buku/' . $buku->Kode_Register);?>"><button type="button" class="btn btn-warning btn-xs">Edit</button></a>
+                      <a href="<?php echo base_url('BukuController/delete/' . $buku->Kode_Register); ?>"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
+                      
                   </td>
                 </tr>
-                <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>A</td>
-                  <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
-                  </td>
-                </tr>
-                <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>A</td>
-                  <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
-                  </td>
-                </tr>
-                <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>A</td>
-                  <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
-                  </td>
-                </tr>
+               <?php } ?>
               </table>
             </div>
             <!-- /.box-body -->

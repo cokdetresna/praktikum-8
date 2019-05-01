@@ -16,7 +16,8 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <button onclick="" class="btn btn-primary btn-linking"><i class="fa fa-chevron-left"></i> Kembali ke List Peminjaman Buku</button>
+      <a href="<?php echo site_url('peminjaman'); ?>"><button onclick="" class="btn btn-primary btn-linking"><i class="fa fa-chevron-left"></i> Kembali ke List Peminjaman Buku</button></a>
+      
       <div class="row" style="margin-top: 8px;">
         <div class="col-xs-12">
           <div class="box">

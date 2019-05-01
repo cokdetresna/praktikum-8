@@ -16,7 +16,8 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <button onclick="" class="btn btn-success btn-linking">Tambah Data Peminjaman</button>
+      <a href="<?php echo site_url('peminjaman/create'); ?>"><button onclick="" class="btn btn-success btn-linking">Tambah Data Peminjaman</button></a>
+      
       <div class="row" style="margin-top: 8px;">
         <div class="col-xs-12">
           <div class="box">

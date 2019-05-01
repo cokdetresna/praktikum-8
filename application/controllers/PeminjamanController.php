@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Buku extends CI_Controller {
+class PeminjamanController extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,6 +19,10 @@ class Buku extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index() { 
-  		$this->template->load('template','anggota/index');
+  		$this->template->load('template','peminjaman/index');
+    }
+
+    public function create(){
+    	$this->template->load('template','peminjaman/create');
     }
 }

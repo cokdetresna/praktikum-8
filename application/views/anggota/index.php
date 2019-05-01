@@ -16,7 +16,7 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <button onclick="" class="btn btn-success btn-linking">Tambah Data Anggota</button>
+      <a href="<?php echo site_url('anggota/create') ?>"><button onclick="" class="btn btn-success btn-linking">Tambah Data Anggota</button></a>
       <div class="row" style="margin-top: 8px;">
         <div class="col-xs-12">
           <div class="box">
@@ -44,50 +44,19 @@
                   <th class="text-center">Alamat</th>
                   <th class="text-center">Action</th>
                 </tr>
+                <?php foreach ($dataAnggota as $anggota) { ?>
                 <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td><?php echo $anggota->Kode_Anggota; ?></td>
+                  <td><?php echo $anggota->Nama; ?></td>
+                  <td><?php echo $anggota->Prodi; ?></td>
+                  <td><?php echo $anggota->Jenjang; ?></td>
+                  <td><?php echo $anggota->Alamat; ?></td>
                   <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                      <a href="<?php echo site_url('anggota/' . $anggota->Kode_Anggota); ?>"><button type="button" class="btn btn-warning btn-xs">Edit</button></a>
+                      <a href="<?php echo base_url('anggotaController/delete/' . $anggota->Kode_Anggota); ?>"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
                   </td>
                 </tr>
-                <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
-                  </td>
-                </tr>
-                <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
-                  </td>
-                </tr>
-                <tr class="text-center">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td>TK</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  <td>
-                      <button type="button" class="btn btn-warning btn-xs">Edit</button>
-                      <button type="button" class="btn btn-danger btn-xs">Delete</button>
-                  </td>
-                </tr>
+               <?php } ?>
               </table>
             </div>
             <!-- /.box-body -->

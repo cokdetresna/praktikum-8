@@ -53,8 +53,15 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['anggota'] = 'Anggota/index';
-$route['anggota/create'] = 'Anggota/create';
+//Route Anggota
+$route['anggota'] = 'AnggotaController/index';
+$route['anggota/create'] = 'AnggotaController/create';
+$route['anggota/store'] = 'AnggotaController/store';
+$route['anggota/(:any)'] = 'AnggotaController/edit/$1';
+$route['anggota/(:any)/update'] = 'AnggotaController/update/$1';
+$route['anggota/delete/(:any)'] = 'AnggotaController/delete/$1';
+
+//Route Pegawai
 $route['pegawai'] = 'PegawaiController/index';
 $route['pegawai/create'] = 'PegawaiController/create';
 $route['pegawai/store'] = 'PegawaiController/store';
@@ -62,6 +69,15 @@ $route['pegawai/(:any)'] = 'PegawaiController/edit/$1';
 $route['pegawai/(:any)/update'] = 'PegawaiController/update/$1';
 $route['pegawai/delete/(:any)'] = 'PegawaiController/delete/$1';
 
-$route['buku'] = 'Buku/index';
-$route['peminjaman'] = 'Peminjaman/index';
+//Route Buku
+$route['buku'] = 'BukuController/index';
+$route['buku/create'] = 'BukuController/create';
+$route['buku/store'] = 'BukuController/store';
+$route['buku/delete/(:any)'] = 'BukuController/delete/$1';
+$route['buku/(:any)'] = 'BukuController/edit/$1';
+$route['buku/(:any)/update'] = 'BukuController/update/$1';
+
+//Route Peminjaman
+$route['peminjaman'] = 'PeminjamanController/index';
+$route['peminjaman/create'] = 'PeminjamanController/create';
 
