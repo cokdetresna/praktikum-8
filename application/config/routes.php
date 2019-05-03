@@ -53,6 +53,10 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+//Route Dashboard
+$route['dashboard'] = 'DashboardController/index';
+
 //Route Anggota
 $route['anggota'] = 'AnggotaController/index';
 $route['anggota/create'] = 'AnggotaController/create';
