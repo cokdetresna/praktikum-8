@@ -23,6 +23,7 @@ class PegawaiController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Pegawai');
 		$this->load->helper('url');
+		$this->load->library('form_validation');
 	}
 
 	public function index() {
@@ -35,14 +36,31 @@ class PegawaiController extends CI_Controller {
     }
 
     public function store() {
-    	$nama = $this->input->post('namaPegawai');
-    	$alamat = $this->input->post('alamatPegawai');
-    	$data = array(
-    	 	'Nama' => $nama,
-    	 	'Alamat' => $alamat
+
+    	$this->form_validation->set_rules('namaPegawai','Nama','required|trim');
+    	$this->form_validation->set_rules('emailPegawai','Email','required|trim|valid_email|is_unique[petugas.username]',['is_unique' => "Email sudah digunakan!"]);
+    	$this->form_validation->set_rules('passwordPegawai','Password','required|trim');
+    	$this->form_validation->set_rules('alamatPegawai','Alamat','required|trim');
+
+    	if($this->form_validation->run() == false){
+    		 $this->template->load('template','pegawai/create');
+    	}
+    	else{
+    		$data = array(
+    	 		'Nama' => $this->input->post('namaPegawai'),
+    	 		'username' => $this->input->post('emailPegawai'),
+    	 		'password' => md5($this->input->post('passwordPegawai')),
+    	 		'Alamat' => $this->input->post('alamatPegawai'),
     	 	);
-    	$this->Pegawai->insert($data);
-    	redirect('PegawaiController/create');
+    	 	$this->Pegawai->insert($data);
+    	 	$this->session->set_flashdata('message','<div class="callout callout-success">
+      <h4>Selamat!</h4>
+      <p>Berhasil Tambah Data.</p>
+    </div>');
+    		redirect('pegawai/create');
+    	}
+
+    	
     }
 
     public function delete($id){
@@ -59,6 +77,10 @@ class PegawaiController extends CI_Controller {
     public function update($id){
 		$result = $this->Pegawai->update($id);
 		echo json_encode($result);
+        $this->session->set_flashdata('message','<div class="callout callout-success">
+          <h4>Selamat!</h4>
+          <p>Berhasil Edit Data</p>
+        </div>');
 		redirect('PegawaiController/edit/'. $id);
     }
 

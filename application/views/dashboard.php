@@ -17,7 +17,7 @@
     <section class="content">
       <!-- Small boxes (Stat box) -->
         <div class="callout callout-info">
-            <h4>Selamat Datang Cokde Tresna Jaya!</h4>
+            <h4>Selamat Datang <?php echo $this->session->userdata('nama'); ?></h4>
             <p>Selamat Datang di Sistem Peminjaman Buku Perpustakaan</p>
         </div>
       
@@ -28,7 +28,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Pegawai</span>
-              <span class="info-box-number">90</span>
+              <span class="info-box-number"><?= $dataPegawai->num_rows(); ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -41,7 +41,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Anggota</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-number"><?= $dataAnggota->num_rows(); ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -58,7 +58,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Buku</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-number"><?= $dataBuku->num_rows(); ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

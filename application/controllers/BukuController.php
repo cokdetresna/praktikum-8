@@ -22,9 +22,11 @@ class BukuController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Buku');
 		$this->load->helper('url');
+        $this->load->library('form_validation');
 	}
 
 	public function index() { 
+
 		$data['dataBuku'] = $this->Buku->getList()->result();
   		$this->template->load('template','buku/index', $data);
     }
@@ -34,18 +36,37 @@ class BukuController extends CI_Controller {
     }
 
     public function store(){
-    	$judul = $this->input->post('judulBuku');
-    	$pengarang = $this->input->post('pengarang');
-    	$tahun = $this->input->post('tahunTerbit');
-    	$penerbit = $this->input->post('penerbit');
-    	$data = array(
-    			'Judul_Buku' => $judul,
-    			'Pengarang' => $pengarang,
-    			'Penerbit' => $penerbit,
-    			'Tahun_Terbit' => $tahun
-    		);
-    	$this->Buku->insert($data);
-    	redirect('BukuController/create');
+        $this->form_validation->set_rules('judulBuku','Judul','required|trim',[
+                'required' => "*Judul Buku harus diisi!"
+            ]);        
+        $this->form_validation->set_rules('pengarang','Pengarang','required|trim',[
+                'required' => "*Pengarang harus diisi!"
+            ]);
+        $this->form_validation->set_rules('tahunTerbit','Tahun Terbit','required|trim|numeric',[
+                'required' => "*Tahun terbit harus diisi!"
+            ]);
+        $this->form_validation->set_rules('penerbit','Penerbit','required|trim',[
+                'required' => "*Penerbit harus diisi!"
+            ]);
+    	
+        if($this->form_validation->run() == false){
+             $this->template->load('template','buku/create');
+        }
+        else{
+        	$data = array(
+        			'Judul_Buku' => $this->input->post('judulBuku'),
+        			'Pengarang' => $this->input->post('pengarang'),
+        			'Penerbit' => $this->input->post('penerbit'),
+        			'Tahun_Terbit' => $this->input->post('tahunTerbit')
+        		);
+
+        	$this->Buku->insert($data);
+            $this->session->set_flashdata('message','<div class="callout callout-success">
+          <h4>Selamat!</h4>
+          <p>Berhasil Tambah Data.</p>
+        </div>');
+        	redirect('buku/create');
+        }
     }
 
     public function delete($id){
@@ -60,9 +81,15 @@ class BukuController extends CI_Controller {
     }
 
     public function update($id){
-    	$result = $this->Buku->update($id);
-		echo json_encode($result);
-		redirect('BukuController/edit/'. $id);
+            $result = $this->Buku->update($id);
+            
+            echo json_encode($result);
+            $this->session->set_flashdata('message','<div class="callout callout-success">
+          <h4>Selamat!</h4>
+          <p>Berhasil Edit Data</p>
+        </div>');
+            redirect('buku/'. $id);
+    	
     }
 
 }

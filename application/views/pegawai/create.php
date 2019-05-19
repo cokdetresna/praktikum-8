@@ -15,6 +15,7 @@
 
     <!-- Main content -->
     <section class="content">
+      <?= $this->session->flashdata('message'); ?>
       <!-- Small boxes (Stat box) -->
       <a href="<?php echo site_url('pegawai'); ?>"><button onclick="" class="btn btn-primary btn-linking"><i class="fa fa-chevron-left"></i> Kembali ke List Pegawai</button></a>
       <div class="row" style="margin-top: 8px;">
@@ -29,11 +30,23 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="namaPegawai">Nama pegawai</label>
-                  <input type="text" class="form-control" id="namaPegawai" placeholder="Masukkan nama pegawai" name="namaPegawai">
+                  <input type="text" class="form-control" id="namaPegawai" placeholder="Masukkan nama..." name="namaPegawai">
+                  <?php echo form_error('namaPegawai','<small class="text-danger">','</small>');  ?>
+                </div>
+                <div class="form-group">
+                  <label for="emailPegawai">Email</label>
+                  <input type="text" class="form-control" id="emailPegawai" placeholder="Masukkan email..." name="emailPegawai">
+                  <?php echo form_error('emailPegawai','<small class="text-danger">','</small>');  ?>
+                </div>
+                <div class="form-group">
+                  <label for="passwordPegawai">Password</label>
+                  <input type="password" class="form-control" id="passwordPegawai" placeholder="Masukkan password..." name="passwordPegawai">
+                  <?php echo form_error('passwordPegawai','<small class="text-danger">','</small>');  ?>
                 </div>
                 <div class="form-group">
                   <label for="alamatPegawai">Alamat</label>
-                  <input type="text" class="form-control" id="alamatPegawai" placeholder="Masukkan alamat" name="alamatPegawai">
+                  <input type="text" class="form-control" id="alamatPegawai" placeholder="Masukkan alamat..." name="alamatPegawai">
+                  <?php echo form_error('alamatPegawai','<small class="text-danger">','</small>');  ?>
                 </div>
               </div>
               <!-- /.box-body -->

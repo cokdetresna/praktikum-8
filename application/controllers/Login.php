@@ -23,13 +23,14 @@
 					'password' => md5($password)
 				);
 			$cek = $this->m_login->cek_login("petugas",$where)->num_rows();
+			$data = $this->m_login->cek_login("petugas",$where)->row();
 			if($cek > 0){
 				$data_session = array(
-						'nama' => $username,
+						'nama' => $data->Nama,
 						'status' => "login"
 					);
 				$this->session->set_userdata($data_session);
-				redirect(base_url('Admin'));
+				redirect(base_url('dashboard'));
 			}
 			else{
 				echo "username dan password salah!";

@@ -22,6 +22,7 @@ class AnggotaController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Anggota');
 		$this->load->helper('url');
+        $this->load->library('form_validation');
 	}
 
 	public function index() { 
@@ -34,18 +35,37 @@ class AnggotaController extends CI_Controller {
     }
 
     public function store(){
-    	$nama = $this->input->post('namaAnggota');
-    	$prodi = $this->input->post('programStudi');
-    	$jenjang = $this->input->post('jenjang');
-    	$alamat = $this->input->post('alamat');
-    	$data = array(
-    		'Nama' => $nama,
-    		'Prodi' => $prodi,
-    		'Jenjang' => $jenjang,
-    		'Alamat' => $alamat
-    	);
-    	$this->Anggota->insert($data);
-    	redirect('AnggotaController/create');
+        $this->form_validation->set_rules('namaAnggota','Nama','required|trim',[
+                'required' => "*Nama Anggota harus diisi!"
+            ]);
+        $this->form_validation->set_rules('programStudi','Program Studi','required|trim',[
+                'required' => "*Program Studi harus diisi!"
+            ]);
+        $this->form_validation->set_rules('jenjang','Jenjang','required|trim',[
+                'required' => "*Jenjang harus diisi!"
+            ]);
+        $this->form_validation->set_rules('alamat','Alamat','required|trim',[
+                'required' => "*Alamat harus diisi!"
+            ]);
+        if($this->form_validation->run() == false){
+             $this->template->load('template','anggota/create');
+        }
+        else{
+            $data = array(
+                'Nama' => $this->input->post('namaAnggota'),
+                'Prodi' => $this->input->post('programStudi'),
+                'Jenjang' => $this->input->post('jenjang'),
+                'Alamat' => $this->input->post('alamat')
+            );
+            $this->Anggota->insert($data);
+            $this->session->set_flashdata('message','<div class="callout callout-success">
+      <h4>Selamat!</h4>
+      <p>Berhasil Tambah Data.</p>
+    </div>');
+            redirect('anggota/create');
+        }
+    	
+    	
     }
 
     public function delete($id){
@@ -60,8 +80,14 @@ class AnggotaController extends CI_Controller {
     }
 
     public function update($id){
-		$result = $this->Anggota->update($id);
-		echo json_encode($result);
-		redirect('AnggotaController/edit/'. $id);
+        
+            $result = $this->Anggota->update($id);
+            echo json_encode($result);
+            $this->session->set_flashdata('message','<div class="callout callout-success">
+          <h4>Selamat!</h4>
+          <p>Berhasil Edit Data</p>
+        </div>');
+            redirect('anggota/'. $id);    
+		
     }
 }

@@ -22,26 +22,19 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Pegawai</h3>
-
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
                 <tr>
                   <th class="text-center">Kode Pegawai</th>
                   <th class="text-center">Nama Pegawai</th>
                   <th class="text-center">Alamat</th>
                   <th class="text-center">Action</th>
                 </tr>
+                </thead>
+                <tbody>
                 <?php 
                     foreach ($dataPegawai as $pegawai) { ?>
                       <tr class="text-center">
@@ -54,6 +47,7 @@
                         </td>
                       </tr>      
                  <?php } ?>
+                 </tbody>
               </table>
             </div>
             <!-- /.box-body -->

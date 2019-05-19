@@ -16,6 +16,7 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
+      <?= $this->session->flashdata('message'); ?>
       <a href="<?php echo site_url('pegawai'); ?>"><button onclick="" class="btn btn-primary btn-linking"><i class="fa fa-chevron-left"></i> Kembali ke List Pegawai</button></a>
       <div class="row" style="margin-top: 8px;">
         <div class="col-xs-12">
